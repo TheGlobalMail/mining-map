@@ -1,0 +1,21 @@
+!table
+!version 450
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 8
+    Moratorium_ID Integer ;
+    Land_Council_Region Char (7) ;
+    Moratorium_TITLE Char (15) ;
+    Application_DATE Date ;
+    VETO_START_DATE Date ;
+    VETO_END_DATE Date ;
+    Reference_TITLE_NUMBER Decimal (15, 0) ;
+    Status Char (8) ;
+begin_metadata
+"\IsReadOnly" = "FALSE"
+"\MapInfo" = ""
+"\MapInfo\TableID" = "a31e9aec-7c5e-49af-ac2b-ad75483627e9"
+"\MapInfo\ParentTableID" = "3f49e809-65b2-463a-8b49-02d25bd7dee7"
+end_metadata

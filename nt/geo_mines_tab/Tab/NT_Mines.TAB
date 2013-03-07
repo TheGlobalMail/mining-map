@@ -1,0 +1,54 @@
+!table
+!version 300
+!charset Neutral
+
+Definition Table
+  Type NATIVE Charset "Neutral"
+  Fields 47
+    ID Char (10) ;
+    ModatID Integer ;
+    CommonName Char (40) ;
+    MinCategories Char (32) ;
+    MajCommodity Char (32) ;
+    MinCommodity Char (64) ;
+    Status Char (50) ;
+    MinField Char (50) ;
+    GeolRegion Char (64) ;
+    GeolProvince Char (64) ;
+    GeolDomain Char (64) ;
+    Eon Char (20) ;
+    Era Char (20) ;
+    Period Char (20) ;
+    Map100K Char (20) ;
+    Easting Integer ;
+    Northing Integer ;
+    Zone Smallint ;
+    LocMethod Char (32) ;
+    LocAccuracy Char (20) ;
+    LocDesc Char (150) ;
+    Size Char (20) ;
+    Length Float ;
+    Width Float ;
+    VerticalExtent Float ;
+    OrebodyShape Char (20) ;
+    Model Char (40) ;
+    CoxClass Char (64) ;
+    MinStyle1 Char (20) ;
+    MinStyle2 Char (20) ;
+    GrainSize Char (20) ;
+    OreControl1 Char (20) ;
+    OreControl2 Char (20) ;
+    HostRelationship Char (25) ;
+    DipDirection Char (50) ;
+    Dip Integer ;
+    Comments1 Char (254) ;
+    Comments2 Char (254) ;
+    Comments3 Char (254) ;
+    Comments4 Char (254) ;
+    MiningMethod Char (25) ;
+    TotProdMt Integer ;
+    ProdComments Char (254) ;
+    FeatureCodeDesc Char (128) ;
+    FeatureCodeGA Integer ;
+    LongitudeGDA94 Float ;
+    LatitudeGDA94 Float ;

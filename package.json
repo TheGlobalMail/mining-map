@@ -1,0 +1,13 @@
+{
+  "name": "mining-data",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "shp2json": "~0.1.3",
+    "request": "~2.14.0",
+    "unzip": "~0.1.4",
+    "event-stream": "~3.0.11",
+    "adm-zip": "~0.2.1",
+    "bufferedstream": "~1.5.0"
+  }
+}

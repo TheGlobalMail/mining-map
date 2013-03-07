@@ -1,0 +1,19 @@
+!table
+!version 550
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 5
+    TITLE_TYPE_CODE Char (10) ;
+    TITLE_NUMBER Float ;
+    PERCENTAGE Float ;
+    HOLDER Char (192) ;
+    TYPE Char (14) ;
+begin_metadata
+"\IsReadOnly" = "FALSE"
+"\OracleWorkspace" = ""
+"\OracleWorkspace\Versioned" = "OFF"
+"\OracleWorkspace\Name" = ""
+"\OracleWorkspace\ParentName" = ""
+end_metadata
