@@ -22,11 +22,16 @@ exports.createStream = function(){
 });
 };
 
+AdmZip.prototype.fixEntry = function(entryName, newEntryName){
+	_zip.fixEntry(entryName, newEntryName);
+};
+
 exports.processMiningShapeFiles = function(zipFile, cb){
-	var newZipFile = new ZipFile();
+	//var newZipFile = new ZipFile();
+
 	var shpFiles = ['NT_Mines.dbf', 'NT_Mines.prj', 'NT_Mines.sbn','NT_Mines.sbx', 'NT_Mines.shp', 'NT_Mines.shx'];
 	var gzipData;
-	shpFiles.forEach(function(file){
+	/*shpFiles.forEach(function(file){
 		var entry = zipFile.getEntry('Shp/' + file);
 		console.error("setting entry: " + file + " with " + entry.toString());
 		var newEntry = new ZipEntry();
@@ -40,15 +45,14 @@ exports.processMiningShapeFiles = function(zipFile, cb){
 			console.error("setting entry: " + file + " with " + newEntry.toString());
 		}
 		newZipFile.setEntry(newEntry);
-	});
+	});*/
 	shpFiles.forEach(function(file){
-		var entry = newZipFile.getEntry(file);
-		if (file.match(/shp/)){
-			console.error("setting entry: " + file + " with " + entry.toString());
-		}
+		zipFile.fixEntry('Shp/' + file, file);
 	});
 	var stream = fs.createWriteStream('data/redone.zip');
 	stream.on('end', function(){
+		cb(null, "done");
+		/*
 		gzipData = new BufferedStream();
 
 		toJSON(gzipData).pipe(es.wait(function(err, json){
@@ -56,11 +60,12 @@ exports.processMiningShapeFiles = function(zipFile, cb){
 			console.error(json);
 			cb(null, json);
 		}));
-		gzipData.end(newZipFile.toBuffer());
+		gzipData.end(zipFile.toBuffer());
+		*/
 	});
 
 
-	stream.end(newZipFile.toBuffer());
+	stream.end(zipFile.toBuffer());
 	
 
 	/*

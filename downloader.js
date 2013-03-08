@@ -39,6 +39,7 @@ function nt(){
 		form: data
 	}, function(err, res, body){
 		var download = new ZipFile(body);
+		//download.extractEntryTo('geo_mines_shp.zip', 'downloaded_geo_mines_shp.zip');
 		var geoMines = download.getEntry('geo_mines_shp.zip');
 		toGeoJSONStream.processMiningShapeFiles(new ZipFile(geoMines.getData()), function(err, json){
 			console.error("complete!");
