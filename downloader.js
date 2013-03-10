@@ -3,6 +3,8 @@ var fs = require('fs');
 var toGeoJSONStream = require('./to-geojson');
 var AdmZip = require('adm-zip');
 var ZipFile = require('adm-zip/zipFile');
+var temp = require('temp');
+var path = require('path');
 
 // stream to parse csv
 
@@ -38,13 +40,17 @@ function nt(){
 		},
 		form: data
 	}, function(err, res, body){
-		var download = new ZipFile(body);
-		//download.extractEntryTo('geo_mines_shp.zip', 'downloaded_geo_mines_shp.zip');
-		var geoMines = download.getEntry('geo_mines_shp.zip');
-		toGeoJSONStream.processMiningShapeFiles(new ZipFile(geoMines.getData()), function(err, json){
-			console.error("complete!");
-			console.error(json);
+		var convertedPath = __dirname + '/converted/geo_mines_shp.zip';
+		var download = new AdmZip(body);
+		download.extractEntryTo('geo_mines_shp.zip', __dirname + '/converted/', false, true);
+		var upload = request.post('http://ogre.adc4gis.com/convert', function(err, res, json){
+			console.error(res.statusCode);
+			console.error("Got json:" + json);
+			var jsonFile = fs.createWriteStream(__dirname + "/converted/nt_mines.json");
+			jsonFile.end(json);
 		});
+		var form = upload.form();
+		form.append('upload', fs.createReadStream(convertedPath));
 	});
 }
 
