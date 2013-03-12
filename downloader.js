@@ -10,7 +10,7 @@ var crypto = require('crypto');
 var db = require('./db');
 var async = require('async');
 
-exports.downloadNT = function(cb){
+var downloadNT = exports.downloadNT = function (cb){
 	var throttle = 3; // number of things to do at once
 	Seq()
 		// Download zip file and exract each file (5 or so zip files) into /converted/nt
@@ -41,6 +41,13 @@ exports.downloadNT = function(cb){
 		.seq(cb, null)
 		.catch(cb);
 };
+
+if (!module.parent){
+	downloadNT(function(err){
+		if (err) throw err;
+		console.error('OK');
+	});
+}
 
 exports.downloadNTDataFiles = function(cb){
 	requestNTShpFiles(function(err, res, body){
@@ -115,8 +122,10 @@ function extractFeatures(collection){
 function storeCollectionInDB(collection){
 	var done = this;
 	async.forEachSeries(collection, storeFeatureInDB, function(err){
+		// Need a little delay or else connection pool freaks out. 
+		// Listening for drain in db.js woudl be nicer
 		setTimeout(function(err){
-			//console.error("completed: " + collection.length);
+			console.error("completed: " + collection.length);
 			done(err);
 		}, process.env.NODE_ENV === 'test' ? 200 : 30000);
 	});

@@ -76,3 +76,7 @@ exports.upsert = function(table, id, values, cb){
     });
   });
 };
+
+exports.end = function(){
+  pg.end();
+};

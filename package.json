@@ -15,7 +15,8 @@
     "glob": "~3.1.21",
     "topojson": "0.0.32",
     "shapefile": "0.0.10",
-    "async": "~0.2.6"
+    "async": "~0.2.6",
+    "express": "~3.1.0"
   },
   "devDependencies": {
     "tap": "~0.4.0",
