@@ -8,12 +8,20 @@ var shapefile = require('shapefile');
 
 exports.toJson = function(zipFile, cb){
 	var zip = new AdmZip(zipFile);
+	exports.toJsonFromZipFile(zip, cb);
+};
+
+exports.toJsonFromZipFile = function(zip, cb){
 	temp.mkdir('geojsonify', function(err, dirPath){
 		zip.extractAllTo(dirPath, true);
-		var shapeFiles = glob.sync(path.join(dirPath, '**/*.shp'));
-		if (!shapeFiles.length) return cb("No shapefiles found in " + dirPath);
-		convertShapeFiles(shapeFiles, cb);
+		exports.toJsonFromDir(dirPath, cb);
 	});
+};
+
+exports.toJsonFromDir = function(dirPath, cb){
+	var shapeFiles = glob.sync(path.join(dirPath, '**/*.shp'));
+	if (!shapeFiles.length) return cb("No shapefiles found in " + dirPath);
+	convertShapeFiles(shapeFiles, cb);
 };
 
 function convertShapeFiles(shapeFiles, cb){

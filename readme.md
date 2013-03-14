@@ -1,10 +1,12 @@
 TODO
 =======
-* get orm2 going
+* continue with states
 * code to check if file has changed
     * checksum or just redo json
-* code to extract geo/poli from zip
-    * extract to temp dir
+* break up download.js
+* look into https://github.com/tobyhede/postsql
+* setup on heroku
+* look at historical tenements
 
 NT Data
 ========

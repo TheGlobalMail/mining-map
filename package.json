@@ -16,7 +16,9 @@
     "topojson": "0.0.32",
     "shapefile": "0.0.10",
     "async": "~0.2.6",
-    "express": "~3.1.0"
+    "express": "~3.1.0",
+    "tar": "~0.1.16",
+    "mkdirp": "~0.3.5"
   },
   "devDependencies": {
     "tap": "~0.4.0",
