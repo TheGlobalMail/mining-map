@@ -14,7 +14,7 @@ exports.download = function(cb){
 	Seq()
 		// Download zip file and return a ZipFile object
 		.seq(downloadDataFile, Seq)
-		// Take each of the zip files (containing shape files) and convert to geojson
+		// Take the zip file (containing shape files) and convert to geojson
 		.seq(function(zipShapeFile){
 			//console.error('found:');
 			//console.error(_.map(zipShapeFile.getEntries(), function(e){ return e.entryName; }));
