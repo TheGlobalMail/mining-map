@@ -60,6 +60,10 @@ exports.upsert = function(table, id, values, cb){
     params.push(values[key]);
   });
   exports.connect(function(err, client, done){
+    if (err){
+      done(err);
+      return cb(err);
+    }
     client.query('begin');
     client.query("UPDATE " + table + " SET " + updateFields + " WHERE id = $1;", params);
     var insert = "INSERT INTO " + table + " (id, " + keys.join(', ') + ") " +
@@ -67,7 +71,7 @@ exports.upsert = function(table, id, values, cb){
       "  (SELECT 1 FROM " + table + " WHERE id = $1);";
     client.query(insert, params, function(err, result){
       if (err){
-        done();
+        done(err);
         return cb(err);
       }
       client.query('COMMIT');

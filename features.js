@@ -43,7 +43,15 @@ function storeFeatureInDB(feature, cb){
 		geometry: JSON.stringify(feature.geometry),
 		properties: JSON.stringify(feature.properties)
 	};
-	db.upsert('features', id, values, cb);
+	try{
+		db.upsert('features', id, values, cb);
+	}catch(e){
+		// better way to handle drain event?
+		conosle.error("caught: " + e + ' while upserting. Going to back off and let things drain.');
+		setTimeout(function(){
+			db.upsert('features', id, values, cb);
+		}, 30000);
+	}
 }
 
 exports.find = function(cb){

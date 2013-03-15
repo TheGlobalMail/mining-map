@@ -38,7 +38,7 @@ exports.download = function (cb){
 			features.extractFeatures('nt', collection, this);
 		})
 		// Store each feature in the database
-		seqMap(function(collection){
+		.seqMap(function(collection){
 			features.storeCollectionInDB(collection, this);
 		})
 		// We're done! call callback.
