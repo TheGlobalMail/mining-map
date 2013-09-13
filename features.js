@@ -55,7 +55,7 @@ function storeFeatureInDB(feature, cb){
 }
 
 exports.find = function(cb){
-	var sql = "select properties, geometry from features where feat";
+	var sql = "select properties, geometry from features where state = 'nsw' and type in ('coal_titles', 'coal_applications')";
 	db.query(sql, [], function(err, result){
 		if (err) return cb(err);
 		var collection = { "type": "FeatureCollection"};
